@@ -38,7 +38,7 @@ create table [Car] (
   [plate] varchar(50),
   [color] varchar(50),
   [serial_number] varchar(50),
-  [manufacture_year] Date,
+  [manufacturer_year] Date,
   [accident_id] int						      -- treba dodati foreign key ovdje
 );
 
@@ -62,7 +62,7 @@ create table [Insurance] (
 create table [Accident] (
   [accident_id] int primary key,
   [report_date] Date,
-  [damage_cost] varchar(50),
+  [damage_cost] float,
   [is_at_fault] int,
   [insurance_id] int foreign key references Insurance(insurance_id) not null unique,
   constraint value_constraint_is_at_fault CHECK (is_at_fault = 0 OR is_at_fault = 1)

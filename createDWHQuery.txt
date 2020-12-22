@@ -1,5 +1,8 @@
-CREATE TABLE [DimDriver] (
-  [id] int,
+create database CarInsuranceDWH;
+use CarInsuranceDWH;
+
+create table [DimDriver] (
+  [id] int primary key,
   [first_name] varchar(50),
   [last_name] varchar(50),
   [date_of_birth] Date,
@@ -10,8 +13,8 @@ CREATE TABLE [DimDriver] (
   [state] varchar(50)
 );
 
-CREATE TABLE [DimAgent] (
-  [id] int,
+create table [DimAgent] (
+  [id] int primary key,
   [username] varchar(50),
   [first_name] varchar(50),
   [last_name] varchar(50),
@@ -22,8 +25,16 @@ CREATE TABLE [DimAgent] (
   [state] varchar(50)
 );
 
-CREATE TABLE [DimCar] (
-  [id] int,
+create table [DimInsurance] (
+  [id] int primary key,
+  [coverage] float,
+  [deductible] float,
+  [payment_amount] float,
+  [total_cost] float
+);
+
+create table [DimCar] (
+  [id] int primary key,
   [model] varchar(50),
   [plate] varchar(50),
   [color] varchar(50),
@@ -31,22 +42,12 @@ CREATE TABLE [DimCar] (
   [manufacturer_year] Date
 );
 
-CREATE TABLE [DimInsurance] (
-  [id] int,
-  [coverage] float,
-  [deductible] float,
-  [payment_amount] float,
-  [total_cost] float
-);
-
-CREATE TABLE [FactAccident] (
-  [id] int,
-  [agentkey] int,
-  [driverkey] int,
-  [carkey] int,
-  [insurancekey] int,
+create table [FactAccident] (
+  [id] int primary key,
+  [agentkey] int foreign key references DimAgent(id) not null,
+  [driverkey] int foreign key references DimDriver(id) not null,
+  [carkey] int foreign key references DimCar(id) not null,
+  [insurancekey] int foreign key references DimInsurance(id) not null,
   [damage_cost] float,
   [is_at_fault] int
 );
-
---treba dodati constraints

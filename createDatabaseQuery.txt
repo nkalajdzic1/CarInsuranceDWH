@@ -1,3 +1,6 @@
+create database CarInsurance;
+use CarInsurance;
+
 create table [Address] (
   [address_id] int primary key,
   [street_address] varchar(50),

@@ -1,3 +1,27 @@
+-- EXTRACT ALL ADDRESSES
+Select Address.address_id,Address.street_address,Address.city,Address.state,Address.postal_number 
+from Address;
+
+-- EXTRACT ALL PERSONS
+Select Person.person_id,Person.first_name,Person.last_name,Person.date_of_birth,Person.phone_number,Person.address_id
+from Person;
+
+-- EXTRACT ALL DRIVERS
+Select Driver.driver_id,Driver.person_id,Driver.car_id,Driver.driver_license_number
+from Driver;
+
+-- EXTRACT ALL CARS
+Select Car.car_id,Car.model,Car.plate,Car.color,Car.serial_number,Car.manufacturer_year,Car.accident_id
+from Car;
+
+-- EXTRACT ALL PAYMENTS
+Select Payment.pay_id,Payment.payment_date,Payment.payment_amount
+from Payment;
+
+-- EXTRACT ALL ACCIDENTS
+Select Accident.accident_id,Accident.report_date,Accident.damage_cost,Accident.is_at_fault,Accident.insurance_id
+from Accident;
+
 -- RETURN NAMES OF ALL AGENTS
 select concat(p.first_name, ' ', p.last_name) as name_of_Agent
 from Person p, Agent a
@@ -8,7 +32,7 @@ select concat(p.first_name, ' ', p.last_name) as name_of_driver
 from Person p, Driver d
 where p.person_id=d.person_id;
 
--- RETURN ALL CARS WITH DRIVERS AND AGENTS
+-- RETURN ALL DRIVERS WITH THEIR CARS 
 select concat(p.first_name, ' ', p.last_name) as name_of_driver, c.model, c.plate, c.color, c.serial_number, c.manufacturer_year, c.accident_id
 from  Person p, Driver d, Car c
 where p.person_id=d.person_id and d.car_id=c.car_id;

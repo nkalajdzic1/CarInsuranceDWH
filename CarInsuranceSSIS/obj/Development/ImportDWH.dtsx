@@ -1,0 +1,2616 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="12/22/2020 10:23:33 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-SEHKGGV"
+  DTS:CreatorName="DESKTOP-SEHKGGV\nadir"
+  DTS:DTSID="{856E1C0C-45D8-4C56-AD45-C850A5CC3205}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.132"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="36"
+  DTS:VersionGUID="{AFEF9828-90A9-489A-A546-D945A535E1D5}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Destination]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{CE8ED46A-EB3A-479A-BA5D-08FF4209FF26}"
+      DTS:ObjectName="Destination">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=DESKTOP-SEHKGGV;Initial Catalog=UserData;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Source]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{4CF02DF2-DDE3-4169-9886-BF1EFBCB627F}"
+      DTS:ObjectName="Source">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=DESKTOP-SEHKGGV;Initial Catalog=CarInsurance;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\ImportDimAgent"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{10d70071-2b1e-42b3-9eae-5e24b7732b09}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="ImportDimAgent"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\ImportDimAgent\DestinationUserDataDimAgent"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="DestinationUserDataDimAgent"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[DimAgent]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\ImportDimAgent\DestinationUserDataDimAgent.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Destination]"
+                  connectionManagerRefId="Package.ConnectionManagers[Destination]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\ImportDimAgent\DestinationUserDataDimAgent.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\ImportDimAgent\DestinationUserDataDimAgent.Inputs[OLE DB Destination Input].Columns[username]"
+                      cachedCodepage="1250"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="username"
+                      externalMetadataColumnId="Package\ImportDimAgent\DestinationUserDataDimAgent.Inputs[OLE DB Destination Input].ExternalColumns[username]"
+                      lineageId="Package\ImportDimAgent\SourceCarInsuranceAgent.Outputs[OLE DB Source Output].Columns[username]" />
+                    <inputColumn
+                      refId="Package\ImportDimAgent\DestinationUserDataDimAgent.Inputs[OLE DB Destination Input].Columns[first_name]"
+                      cachedCodepage="1250"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="first_name"
+                      externalMetadataColumnId="Package\ImportDimAgent\DestinationUserDataDimAgent.Inputs[OLE DB Destination Input].ExternalColumns[first_name]"
+                      lineageId="Package\ImportDimAgent\SourceCarInsuranceAgent.Outputs[OLE DB Source Output].Columns[first_name]" />
+                    <inputColumn
+                      refId="Package\ImportDimAgent\DestinationUserDataDimAgent.Inputs[OLE DB Destination Input].Columns[last_name]"
+                      cachedCodepage="1250"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="last_name"
+                      externalMetadataColumnId="Package\ImportDimAgent\DestinationUserDataDimAgent.Inputs[OLE DB Destination Input].ExternalColumns[last_name]"
+                      lineageId="Package\ImportDimAgent\SourceCarInsuranceAgent.Outputs[OLE DB Source Output].Columns[last_name]" />
+                    <inputColumn
+                      refId="Package\ImportDimAgent\DestinationUserDataDimAgent.Inputs[OLE DB Destination Input].Columns[date_of_birth]"
+                      cachedDataType="dbDate"
+                      cachedName="date_of_birth"
+                      externalMetadataColumnId="Package\ImportDimAgent\DestinationUserDataDimAgent.Inputs[OLE DB Destination Input].ExternalColumns[date_of_birth]"
+                      lineageId="Package\ImportDimAgent\SourceCarInsuranceAgent.Outputs[OLE DB Source Output].Columns[date_of_birth]" />
+                    <inputColumn
+                      refId="Package\ImportDimAgent\DestinationUserDataDimAgent.Inputs[OLE DB Destination Input].Columns[phone_number]"
+                      cachedCodepage="1250"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="phone_number"
+                      externalMetadataColumnId="Package\ImportDimAgent\DestinationUserDataDimAgent.Inputs[OLE DB Destination Input].ExternalColumns[phone_number]"
+                      lineageId="Package\ImportDimAgent\SourceCarInsuranceAgent.Outputs[OLE DB Source Output].Columns[phone_number]" />
+                    <inputColumn
+                      refId="Package\ImportDimAgent\DestinationUserDataDimAgent.Inputs[OLE DB Destination Input].Columns[postal_number]"
+                      cachedDataType="i4"
+                      cachedName="postal_number"
+                      externalMetadataColumnId="Package\ImportDimAgent\DestinationUserDataDimAgent.Inputs[OLE DB Destination Input].ExternalColumns[postal_number]"
+                      lineageId="Package\ImportDimAgent\SourceCarInsuranceAgent.Outputs[OLE DB Source Output].Columns[postal_number]" />
+                    <inputColumn
+                      refId="Package\ImportDimAgent\DestinationUserDataDimAgent.Inputs[OLE DB Destination Input].Columns[city]"
+                      cachedCodepage="1250"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="city"
+                      externalMetadataColumnId="Package\ImportDimAgent\DestinationUserDataDimAgent.Inputs[OLE DB Destination Input].ExternalColumns[city]"
+                      lineageId="Package\ImportDimAgent\SourceCarInsuranceAgent.Outputs[OLE DB Source Output].Columns[city]" />
+                    <inputColumn
+                      refId="Package\ImportDimAgent\DestinationUserDataDimAgent.Inputs[OLE DB Destination Input].Columns[state]"
+                      cachedCodepage="1250"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="state"
+                      externalMetadataColumnId="Package\ImportDimAgent\DestinationUserDataDimAgent.Inputs[OLE DB Destination Input].ExternalColumns[state]"
+                      lineageId="Package\ImportDimAgent\SourceCarInsuranceAgent.Outputs[OLE DB Source Output].Columns[state]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\ImportDimAgent\DestinationUserDataDimAgent.Inputs[OLE DB Destination Input].ExternalColumns[id]"
+                      dataType="i4"
+                      name="id" />
+                    <externalMetadataColumn
+                      refId="Package\ImportDimAgent\DestinationUserDataDimAgent.Inputs[OLE DB Destination Input].ExternalColumns[username]"
+                      codePage="1250"
+                      dataType="str"
+                      length="50"
+                      name="username" />
+                    <externalMetadataColumn
+                      refId="Package\ImportDimAgent\DestinationUserDataDimAgent.Inputs[OLE DB Destination Input].ExternalColumns[first_name]"
+                      codePage="1250"
+                      dataType="str"
+                      length="50"
+                      name="first_name" />
+                    <externalMetadataColumn
+                      refId="Package\ImportDimAgent\DestinationUserDataDimAgent.Inputs[OLE DB Destination Input].ExternalColumns[last_name]"
+                      codePage="1250"
+                      dataType="str"
+                      length="50"
+                      name="last_name" />
+                    <externalMetadataColumn
+                      refId="Package\ImportDimAgent\DestinationUserDataDimAgent.Inputs[OLE DB Destination Input].ExternalColumns[date_of_birth]"
+                      dataType="dbDate"
+                      name="date_of_birth" />
+                    <externalMetadataColumn
+                      refId="Package\ImportDimAgent\DestinationUserDataDimAgent.Inputs[OLE DB Destination Input].ExternalColumns[phone_number]"
+                      codePage="1250"
+                      dataType="str"
+                      length="50"
+                      name="phone_number" />
+                    <externalMetadataColumn
+                      refId="Package\ImportDimAgent\DestinationUserDataDimAgent.Inputs[OLE DB Destination Input].ExternalColumns[postal_number]"
+                      dataType="i4"
+                      name="postal_number" />
+                    <externalMetadataColumn
+                      refId="Package\ImportDimAgent\DestinationUserDataDimAgent.Inputs[OLE DB Destination Input].ExternalColumns[city]"
+                      codePage="1250"
+                      dataType="str"
+                      length="50"
+                      name="city" />
+                    <externalMetadataColumn
+                      refId="Package\ImportDimAgent\DestinationUserDataDimAgent.Inputs[OLE DB Destination Input].ExternalColumns[state]"
+                      codePage="1250"
+                      dataType="str"
+                      length="50"
+                      name="state" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\ImportDimAgent\DestinationUserDataDimAgent.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\ImportDimAgent\DestinationUserDataDimAgent.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ImportDimAgent\DestinationUserDataDimAgent.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ImportDimAgent\DestinationUserDataDimAgent.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ImportDimAgent\DestinationUserDataDimAgent.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ImportDimAgent\DestinationUserDataDimAgent.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\ImportDimAgent\SourceCarInsuranceAgent"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="SourceCarInsuranceAgent"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT a.username, p.first_name, p.last_name, p.date_of_birth,
+             p.phone_number, ad.postal_number, ad.city, ad.state
+FROM Agent a, Person p, Address ad 
+WHERE a.person_id = p.person_id AND 
+p.address_id = ad.address_id;</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\ImportDimAgent\SourceCarInsuranceAgent.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Source]"
+                  connectionManagerRefId="Package.ConnectionManagers[Source]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\ImportDimAgent\SourceCarInsuranceAgent.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ImportDimAgent\SourceCarInsuranceAgent.Outputs[OLE DB Source Output].Columns[username]"
+                      codePage="1250"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ImportDimAgent\SourceCarInsuranceAgent.Outputs[OLE DB Source Output].ExternalColumns[username]"
+                      length="50"
+                      lineageId="Package\ImportDimAgent\SourceCarInsuranceAgent.Outputs[OLE DB Source Output].Columns[username]"
+                      name="username"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ImportDimAgent\SourceCarInsuranceAgent.Outputs[OLE DB Source Output].Columns[first_name]"
+                      codePage="1250"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ImportDimAgent\SourceCarInsuranceAgent.Outputs[OLE DB Source Output].ExternalColumns[first_name]"
+                      length="50"
+                      lineageId="Package\ImportDimAgent\SourceCarInsuranceAgent.Outputs[OLE DB Source Output].Columns[first_name]"
+                      name="first_name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ImportDimAgent\SourceCarInsuranceAgent.Outputs[OLE DB Source Output].Columns[last_name]"
+                      codePage="1250"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ImportDimAgent\SourceCarInsuranceAgent.Outputs[OLE DB Source Output].ExternalColumns[last_name]"
+                      length="50"
+                      lineageId="Package\ImportDimAgent\SourceCarInsuranceAgent.Outputs[OLE DB Source Output].Columns[last_name]"
+                      name="last_name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ImportDimAgent\SourceCarInsuranceAgent.Outputs[OLE DB Source Output].Columns[date_of_birth]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ImportDimAgent\SourceCarInsuranceAgent.Outputs[OLE DB Source Output].ExternalColumns[date_of_birth]"
+                      lineageId="Package\ImportDimAgent\SourceCarInsuranceAgent.Outputs[OLE DB Source Output].Columns[date_of_birth]"
+                      name="date_of_birth"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ImportDimAgent\SourceCarInsuranceAgent.Outputs[OLE DB Source Output].Columns[phone_number]"
+                      codePage="1250"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ImportDimAgent\SourceCarInsuranceAgent.Outputs[OLE DB Source Output].ExternalColumns[phone_number]"
+                      length="50"
+                      lineageId="Package\ImportDimAgent\SourceCarInsuranceAgent.Outputs[OLE DB Source Output].Columns[phone_number]"
+                      name="phone_number"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ImportDimAgent\SourceCarInsuranceAgent.Outputs[OLE DB Source Output].Columns[postal_number]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ImportDimAgent\SourceCarInsuranceAgent.Outputs[OLE DB Source Output].ExternalColumns[postal_number]"
+                      lineageId="Package\ImportDimAgent\SourceCarInsuranceAgent.Outputs[OLE DB Source Output].Columns[postal_number]"
+                      name="postal_number"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ImportDimAgent\SourceCarInsuranceAgent.Outputs[OLE DB Source Output].Columns[city]"
+                      codePage="1250"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ImportDimAgent\SourceCarInsuranceAgent.Outputs[OLE DB Source Output].ExternalColumns[city]"
+                      length="50"
+                      lineageId="Package\ImportDimAgent\SourceCarInsuranceAgent.Outputs[OLE DB Source Output].Columns[city]"
+                      name="city"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ImportDimAgent\SourceCarInsuranceAgent.Outputs[OLE DB Source Output].Columns[state]"
+                      codePage="1250"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ImportDimAgent\SourceCarInsuranceAgent.Outputs[OLE DB Source Output].ExternalColumns[state]"
+                      length="50"
+                      lineageId="Package\ImportDimAgent\SourceCarInsuranceAgent.Outputs[OLE DB Source Output].Columns[state]"
+                      name="state"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\ImportDimAgent\SourceCarInsuranceAgent.Outputs[OLE DB Source Output].ExternalColumns[username]"
+                      codePage="1250"
+                      dataType="str"
+                      length="50"
+                      name="username" />
+                    <externalMetadataColumn
+                      refId="Package\ImportDimAgent\SourceCarInsuranceAgent.Outputs[OLE DB Source Output].ExternalColumns[first_name]"
+                      codePage="1250"
+                      dataType="str"
+                      length="50"
+                      name="first_name" />
+                    <externalMetadataColumn
+                      refId="Package\ImportDimAgent\SourceCarInsuranceAgent.Outputs[OLE DB Source Output].ExternalColumns[last_name]"
+                      codePage="1250"
+                      dataType="str"
+                      length="50"
+                      name="last_name" />
+                    <externalMetadataColumn
+                      refId="Package\ImportDimAgent\SourceCarInsuranceAgent.Outputs[OLE DB Source Output].ExternalColumns[date_of_birth]"
+                      dataType="dbDate"
+                      name="date_of_birth" />
+                    <externalMetadataColumn
+                      refId="Package\ImportDimAgent\SourceCarInsuranceAgent.Outputs[OLE DB Source Output].ExternalColumns[phone_number]"
+                      codePage="1250"
+                      dataType="str"
+                      length="50"
+                      name="phone_number" />
+                    <externalMetadataColumn
+                      refId="Package\ImportDimAgent\SourceCarInsuranceAgent.Outputs[OLE DB Source Output].ExternalColumns[postal_number]"
+                      dataType="i4"
+                      name="postal_number" />
+                    <externalMetadataColumn
+                      refId="Package\ImportDimAgent\SourceCarInsuranceAgent.Outputs[OLE DB Source Output].ExternalColumns[city]"
+                      codePage="1250"
+                      dataType="str"
+                      length="50"
+                      name="city" />
+                    <externalMetadataColumn
+                      refId="Package\ImportDimAgent\SourceCarInsuranceAgent.Outputs[OLE DB Source Output].ExternalColumns[state]"
+                      codePage="1250"
+                      dataType="str"
+                      length="50"
+                      name="state" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\ImportDimAgent\SourceCarInsuranceAgent.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ImportDimAgent\SourceCarInsuranceAgent.Outputs[OLE DB Source Error Output].Columns[username]"
+                      codePage="1250"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\ImportDimAgent\SourceCarInsuranceAgent.Outputs[OLE DB Source Error Output].Columns[username]"
+                      name="username" />
+                    <outputColumn
+                      refId="Package\ImportDimAgent\SourceCarInsuranceAgent.Outputs[OLE DB Source Error Output].Columns[first_name]"
+                      codePage="1250"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\ImportDimAgent\SourceCarInsuranceAgent.Outputs[OLE DB Source Error Output].Columns[first_name]"
+                      name="first_name" />
+                    <outputColumn
+                      refId="Package\ImportDimAgent\SourceCarInsuranceAgent.Outputs[OLE DB Source Error Output].Columns[last_name]"
+                      codePage="1250"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\ImportDimAgent\SourceCarInsuranceAgent.Outputs[OLE DB Source Error Output].Columns[last_name]"
+                      name="last_name" />
+                    <outputColumn
+                      refId="Package\ImportDimAgent\SourceCarInsuranceAgent.Outputs[OLE DB Source Error Output].Columns[date_of_birth]"
+                      dataType="dbDate"
+                      lineageId="Package\ImportDimAgent\SourceCarInsuranceAgent.Outputs[OLE DB Source Error Output].Columns[date_of_birth]"
+                      name="date_of_birth" />
+                    <outputColumn
+                      refId="Package\ImportDimAgent\SourceCarInsuranceAgent.Outputs[OLE DB Source Error Output].Columns[phone_number]"
+                      codePage="1250"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\ImportDimAgent\SourceCarInsuranceAgent.Outputs[OLE DB Source Error Output].Columns[phone_number]"
+                      name="phone_number" />
+                    <outputColumn
+                      refId="Package\ImportDimAgent\SourceCarInsuranceAgent.Outputs[OLE DB Source Error Output].Columns[postal_number]"
+                      dataType="i4"
+                      lineageId="Package\ImportDimAgent\SourceCarInsuranceAgent.Outputs[OLE DB Source Error Output].Columns[postal_number]"
+                      name="postal_number" />
+                    <outputColumn
+                      refId="Package\ImportDimAgent\SourceCarInsuranceAgent.Outputs[OLE DB Source Error Output].Columns[city]"
+                      codePage="1250"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\ImportDimAgent\SourceCarInsuranceAgent.Outputs[OLE DB Source Error Output].Columns[city]"
+                      name="city" />
+                    <outputColumn
+                      refId="Package\ImportDimAgent\SourceCarInsuranceAgent.Outputs[OLE DB Source Error Output].Columns[state]"
+                      codePage="1250"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\ImportDimAgent\SourceCarInsuranceAgent.Outputs[OLE DB Source Error Output].Columns[state]"
+                      name="state" />
+                    <outputColumn
+                      refId="Package\ImportDimAgent\SourceCarInsuranceAgent.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ImportDimAgent\SourceCarInsuranceAgent.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ImportDimAgent\SourceCarInsuranceAgent.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ImportDimAgent\SourceCarInsuranceAgent.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\ImportDimAgent.Paths[OLE DB Source Output]"
+              endId="Package\ImportDimAgent\DestinationUserDataDimAgent.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\ImportDimAgent\SourceCarInsuranceAgent.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\ImportDimCar"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{79DC417B-0F5F-43C6-ACEF-94EF504A9D44}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="ImportDimCar"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\ImportDimCar\DestinationUserDataDimCar"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="DestinationUserDataDimCar"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[DimCar]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\ImportDimCar\DestinationUserDataDimCar.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Destination]"
+                  connectionManagerRefId="Package.ConnectionManagers[Destination]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\ImportDimCar\DestinationUserDataDimCar.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\ImportDimCar\DestinationUserDataDimCar.Inputs[OLE DB Destination Input].Columns[model]"
+                      cachedCodepage="1250"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="model"
+                      externalMetadataColumnId="Package\ImportDimCar\DestinationUserDataDimCar.Inputs[OLE DB Destination Input].ExternalColumns[model]"
+                      lineageId="Package\ImportDimCar\SourceCarInsuranceCar.Outputs[OLE DB Source Output].Columns[model]" />
+                    <inputColumn
+                      refId="Package\ImportDimCar\DestinationUserDataDimCar.Inputs[OLE DB Destination Input].Columns[plate]"
+                      cachedCodepage="1250"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="plate"
+                      externalMetadataColumnId="Package\ImportDimCar\DestinationUserDataDimCar.Inputs[OLE DB Destination Input].ExternalColumns[plate]"
+                      lineageId="Package\ImportDimCar\SourceCarInsuranceCar.Outputs[OLE DB Source Output].Columns[plate]" />
+                    <inputColumn
+                      refId="Package\ImportDimCar\DestinationUserDataDimCar.Inputs[OLE DB Destination Input].Columns[color]"
+                      cachedCodepage="1250"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="color"
+                      externalMetadataColumnId="Package\ImportDimCar\DestinationUserDataDimCar.Inputs[OLE DB Destination Input].ExternalColumns[color]"
+                      lineageId="Package\ImportDimCar\SourceCarInsuranceCar.Outputs[OLE DB Source Output].Columns[color]" />
+                    <inputColumn
+                      refId="Package\ImportDimCar\DestinationUserDataDimCar.Inputs[OLE DB Destination Input].Columns[serial_number]"
+                      cachedCodepage="1250"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="serial_number"
+                      externalMetadataColumnId="Package\ImportDimCar\DestinationUserDataDimCar.Inputs[OLE DB Destination Input].ExternalColumns[serial_number]"
+                      lineageId="Package\ImportDimCar\SourceCarInsuranceCar.Outputs[OLE DB Source Output].Columns[serial_number]" />
+                    <inputColumn
+                      refId="Package\ImportDimCar\DestinationUserDataDimCar.Inputs[OLE DB Destination Input].Columns[manufacturer_year]"
+                      cachedDataType="dbDate"
+                      cachedName="manufacturer_year"
+                      externalMetadataColumnId="Package\ImportDimCar\DestinationUserDataDimCar.Inputs[OLE DB Destination Input].ExternalColumns[manufacturer_year]"
+                      lineageId="Package\ImportDimCar\SourceCarInsuranceCar.Outputs[OLE DB Source Output].Columns[manufacturer_year]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\ImportDimCar\DestinationUserDataDimCar.Inputs[OLE DB Destination Input].ExternalColumns[id]"
+                      dataType="i4"
+                      name="id" />
+                    <externalMetadataColumn
+                      refId="Package\ImportDimCar\DestinationUserDataDimCar.Inputs[OLE DB Destination Input].ExternalColumns[model]"
+                      codePage="1250"
+                      dataType="str"
+                      length="50"
+                      name="model" />
+                    <externalMetadataColumn
+                      refId="Package\ImportDimCar\DestinationUserDataDimCar.Inputs[OLE DB Destination Input].ExternalColumns[plate]"
+                      codePage="1250"
+                      dataType="str"
+                      length="50"
+                      name="plate" />
+                    <externalMetadataColumn
+                      refId="Package\ImportDimCar\DestinationUserDataDimCar.Inputs[OLE DB Destination Input].ExternalColumns[color]"
+                      codePage="1250"
+                      dataType="str"
+                      length="50"
+                      name="color" />
+                    <externalMetadataColumn
+                      refId="Package\ImportDimCar\DestinationUserDataDimCar.Inputs[OLE DB Destination Input].ExternalColumns[serial_number]"
+                      codePage="1250"
+                      dataType="str"
+                      length="50"
+                      name="serial_number" />
+                    <externalMetadataColumn
+                      refId="Package\ImportDimCar\DestinationUserDataDimCar.Inputs[OLE DB Destination Input].ExternalColumns[manufacturer_year]"
+                      dataType="dbDate"
+                      name="manufacturer_year" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\ImportDimCar\DestinationUserDataDimCar.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\ImportDimCar\DestinationUserDataDimCar.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ImportDimCar\DestinationUserDataDimCar.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ImportDimCar\DestinationUserDataDimCar.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ImportDimCar\DestinationUserDataDimCar.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ImportDimCar\DestinationUserDataDimCar.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\ImportDimCar\SourceCarInsuranceCar"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="SourceCarInsuranceCar"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT model, plate, color, serial_number, manufacturer_year FROM Car;</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\ImportDimCar\SourceCarInsuranceCar.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Source]"
+                  connectionManagerRefId="Package.ConnectionManagers[Source]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\ImportDimCar\SourceCarInsuranceCar.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ImportDimCar\SourceCarInsuranceCar.Outputs[OLE DB Source Output].Columns[model]"
+                      codePage="1250"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ImportDimCar\SourceCarInsuranceCar.Outputs[OLE DB Source Output].ExternalColumns[model]"
+                      length="50"
+                      lineageId="Package\ImportDimCar\SourceCarInsuranceCar.Outputs[OLE DB Source Output].Columns[model]"
+                      name="model"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ImportDimCar\SourceCarInsuranceCar.Outputs[OLE DB Source Output].Columns[plate]"
+                      codePage="1250"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ImportDimCar\SourceCarInsuranceCar.Outputs[OLE DB Source Output].ExternalColumns[plate]"
+                      length="50"
+                      lineageId="Package\ImportDimCar\SourceCarInsuranceCar.Outputs[OLE DB Source Output].Columns[plate]"
+                      name="plate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ImportDimCar\SourceCarInsuranceCar.Outputs[OLE DB Source Output].Columns[color]"
+                      codePage="1250"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ImportDimCar\SourceCarInsuranceCar.Outputs[OLE DB Source Output].ExternalColumns[color]"
+                      length="50"
+                      lineageId="Package\ImportDimCar\SourceCarInsuranceCar.Outputs[OLE DB Source Output].Columns[color]"
+                      name="color"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ImportDimCar\SourceCarInsuranceCar.Outputs[OLE DB Source Output].Columns[serial_number]"
+                      codePage="1250"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ImportDimCar\SourceCarInsuranceCar.Outputs[OLE DB Source Output].ExternalColumns[serial_number]"
+                      length="50"
+                      lineageId="Package\ImportDimCar\SourceCarInsuranceCar.Outputs[OLE DB Source Output].Columns[serial_number]"
+                      name="serial_number"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ImportDimCar\SourceCarInsuranceCar.Outputs[OLE DB Source Output].Columns[manufacturer_year]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ImportDimCar\SourceCarInsuranceCar.Outputs[OLE DB Source Output].ExternalColumns[manufacturer_year]"
+                      lineageId="Package\ImportDimCar\SourceCarInsuranceCar.Outputs[OLE DB Source Output].Columns[manufacturer_year]"
+                      name="manufacturer_year"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\ImportDimCar\SourceCarInsuranceCar.Outputs[OLE DB Source Output].ExternalColumns[model]"
+                      codePage="1250"
+                      dataType="str"
+                      length="50"
+                      name="model" />
+                    <externalMetadataColumn
+                      refId="Package\ImportDimCar\SourceCarInsuranceCar.Outputs[OLE DB Source Output].ExternalColumns[plate]"
+                      codePage="1250"
+                      dataType="str"
+                      length="50"
+                      name="plate" />
+                    <externalMetadataColumn
+                      refId="Package\ImportDimCar\SourceCarInsuranceCar.Outputs[OLE DB Source Output].ExternalColumns[color]"
+                      codePage="1250"
+                      dataType="str"
+                      length="50"
+                      name="color" />
+                    <externalMetadataColumn
+                      refId="Package\ImportDimCar\SourceCarInsuranceCar.Outputs[OLE DB Source Output].ExternalColumns[serial_number]"
+                      codePage="1250"
+                      dataType="str"
+                      length="50"
+                      name="serial_number" />
+                    <externalMetadataColumn
+                      refId="Package\ImportDimCar\SourceCarInsuranceCar.Outputs[OLE DB Source Output].ExternalColumns[manufacturer_year]"
+                      dataType="dbDate"
+                      name="manufacturer_year" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\ImportDimCar\SourceCarInsuranceCar.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ImportDimCar\SourceCarInsuranceCar.Outputs[OLE DB Source Error Output].Columns[model]"
+                      codePage="1250"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\ImportDimCar\SourceCarInsuranceCar.Outputs[OLE DB Source Error Output].Columns[model]"
+                      name="model" />
+                    <outputColumn
+                      refId="Package\ImportDimCar\SourceCarInsuranceCar.Outputs[OLE DB Source Error Output].Columns[plate]"
+                      codePage="1250"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\ImportDimCar\SourceCarInsuranceCar.Outputs[OLE DB Source Error Output].Columns[plate]"
+                      name="plate" />
+                    <outputColumn
+                      refId="Package\ImportDimCar\SourceCarInsuranceCar.Outputs[OLE DB Source Error Output].Columns[color]"
+                      codePage="1250"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\ImportDimCar\SourceCarInsuranceCar.Outputs[OLE DB Source Error Output].Columns[color]"
+                      name="color" />
+                    <outputColumn
+                      refId="Package\ImportDimCar\SourceCarInsuranceCar.Outputs[OLE DB Source Error Output].Columns[serial_number]"
+                      codePage="1250"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\ImportDimCar\SourceCarInsuranceCar.Outputs[OLE DB Source Error Output].Columns[serial_number]"
+                      name="serial_number" />
+                    <outputColumn
+                      refId="Package\ImportDimCar\SourceCarInsuranceCar.Outputs[OLE DB Source Error Output].Columns[manufacturer_year]"
+                      dataType="dbDate"
+                      lineageId="Package\ImportDimCar\SourceCarInsuranceCar.Outputs[OLE DB Source Error Output].Columns[manufacturer_year]"
+                      name="manufacturer_year" />
+                    <outputColumn
+                      refId="Package\ImportDimCar\SourceCarInsuranceCar.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ImportDimCar\SourceCarInsuranceCar.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ImportDimCar\SourceCarInsuranceCar.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ImportDimCar\SourceCarInsuranceCar.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\ImportDimCar.Paths[OLE DB Source Output]"
+              endId="Package\ImportDimCar\DestinationUserDataDimCar.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\ImportDimCar\SourceCarInsuranceCar.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\ImportDimDriver"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{1f3a621f-4042-410f-a71d-6e47e61d703e}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="ImportDimDriver"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\ImportDimDriver\DestinationUserDataDimDriver"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="DestinationUserDataDimDriver"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[DimDriver]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\ImportDimDriver\DestinationUserDataDimDriver.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Destination]"
+                  connectionManagerRefId="Package.ConnectionManagers[Destination]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\ImportDimDriver\DestinationUserDataDimDriver.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\ImportDimDriver\DestinationUserDataDimDriver.Inputs[OLE DB Destination Input].Columns[first_name]"
+                      cachedCodepage="1250"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="first_name"
+                      externalMetadataColumnId="Package\ImportDimDriver\DestinationUserDataDimDriver.Inputs[OLE DB Destination Input].ExternalColumns[first_name]"
+                      lineageId="Package\ImportDimDriver\SourceCarInsuranceDriver.Outputs[OLE DB Source Output].Columns[first_name]" />
+                    <inputColumn
+                      refId="Package\ImportDimDriver\DestinationUserDataDimDriver.Inputs[OLE DB Destination Input].Columns[last_name]"
+                      cachedCodepage="1250"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="last_name"
+                      externalMetadataColumnId="Package\ImportDimDriver\DestinationUserDataDimDriver.Inputs[OLE DB Destination Input].ExternalColumns[last_name]"
+                      lineageId="Package\ImportDimDriver\SourceCarInsuranceDriver.Outputs[OLE DB Source Output].Columns[last_name]" />
+                    <inputColumn
+                      refId="Package\ImportDimDriver\DestinationUserDataDimDriver.Inputs[OLE DB Destination Input].Columns[date_of_birth]"
+                      cachedDataType="dbDate"
+                      cachedName="date_of_birth"
+                      externalMetadataColumnId="Package\ImportDimDriver\DestinationUserDataDimDriver.Inputs[OLE DB Destination Input].ExternalColumns[date_of_birth]"
+                      lineageId="Package\ImportDimDriver\SourceCarInsuranceDriver.Outputs[OLE DB Source Output].Columns[date_of_birth]" />
+                    <inputColumn
+                      refId="Package\ImportDimDriver\DestinationUserDataDimDriver.Inputs[OLE DB Destination Input].Columns[phone_number]"
+                      cachedCodepage="1250"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="phone_number"
+                      externalMetadataColumnId="Package\ImportDimDriver\DestinationUserDataDimDriver.Inputs[OLE DB Destination Input].ExternalColumns[phone_number]"
+                      lineageId="Package\ImportDimDriver\SourceCarInsuranceDriver.Outputs[OLE DB Source Output].Columns[phone_number]" />
+                    <inputColumn
+                      refId="Package\ImportDimDriver\DestinationUserDataDimDriver.Inputs[OLE DB Destination Input].Columns[postal_number]"
+                      cachedDataType="i4"
+                      cachedName="postal_number"
+                      externalMetadataColumnId="Package\ImportDimDriver\DestinationUserDataDimDriver.Inputs[OLE DB Destination Input].ExternalColumns[postal_number]"
+                      lineageId="Package\ImportDimDriver\SourceCarInsuranceDriver.Outputs[OLE DB Source Output].Columns[postal_number]" />
+                    <inputColumn
+                      refId="Package\ImportDimDriver\DestinationUserDataDimDriver.Inputs[OLE DB Destination Input].Columns[city]"
+                      cachedCodepage="1250"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="city"
+                      externalMetadataColumnId="Package\ImportDimDriver\DestinationUserDataDimDriver.Inputs[OLE DB Destination Input].ExternalColumns[city]"
+                      lineageId="Package\ImportDimDriver\SourceCarInsuranceDriver.Outputs[OLE DB Source Output].Columns[city]" />
+                    <inputColumn
+                      refId="Package\ImportDimDriver\DestinationUserDataDimDriver.Inputs[OLE DB Destination Input].Columns[state]"
+                      cachedCodepage="1250"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="state"
+                      externalMetadataColumnId="Package\ImportDimDriver\DestinationUserDataDimDriver.Inputs[OLE DB Destination Input].ExternalColumns[state]"
+                      lineageId="Package\ImportDimDriver\SourceCarInsuranceDriver.Outputs[OLE DB Source Output].Columns[state]" />
+                    <inputColumn
+                      refId="Package\ImportDimDriver\DestinationUserDataDimDriver.Inputs[OLE DB Destination Input].Columns[driver_license_number]"
+                      cachedCodepage="1250"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="driver_license_number"
+                      externalMetadataColumnId="Package\ImportDimDriver\DestinationUserDataDimDriver.Inputs[OLE DB Destination Input].ExternalColumns[driver_license_number]"
+                      lineageId="Package\ImportDimDriver\SourceCarInsuranceDriver.Outputs[OLE DB Source Output].Columns[driver_license_number]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\ImportDimDriver\DestinationUserDataDimDriver.Inputs[OLE DB Destination Input].ExternalColumns[id]"
+                      dataType="i4"
+                      name="id" />
+                    <externalMetadataColumn
+                      refId="Package\ImportDimDriver\DestinationUserDataDimDriver.Inputs[OLE DB Destination Input].ExternalColumns[first_name]"
+                      codePage="1250"
+                      dataType="str"
+                      length="50"
+                      name="first_name" />
+                    <externalMetadataColumn
+                      refId="Package\ImportDimDriver\DestinationUserDataDimDriver.Inputs[OLE DB Destination Input].ExternalColumns[last_name]"
+                      codePage="1250"
+                      dataType="str"
+                      length="50"
+                      name="last_name" />
+                    <externalMetadataColumn
+                      refId="Package\ImportDimDriver\DestinationUserDataDimDriver.Inputs[OLE DB Destination Input].ExternalColumns[date_of_birth]"
+                      dataType="dbDate"
+                      name="date_of_birth" />
+                    <externalMetadataColumn
+                      refId="Package\ImportDimDriver\DestinationUserDataDimDriver.Inputs[OLE DB Destination Input].ExternalColumns[phone_number]"
+                      codePage="1250"
+                      dataType="str"
+                      length="50"
+                      name="phone_number" />
+                    <externalMetadataColumn
+                      refId="Package\ImportDimDriver\DestinationUserDataDimDriver.Inputs[OLE DB Destination Input].ExternalColumns[postal_number]"
+                      dataType="i4"
+                      name="postal_number" />
+                    <externalMetadataColumn
+                      refId="Package\ImportDimDriver\DestinationUserDataDimDriver.Inputs[OLE DB Destination Input].ExternalColumns[city]"
+                      codePage="1250"
+                      dataType="str"
+                      length="50"
+                      name="city" />
+                    <externalMetadataColumn
+                      refId="Package\ImportDimDriver\DestinationUserDataDimDriver.Inputs[OLE DB Destination Input].ExternalColumns[state]"
+                      codePage="1250"
+                      dataType="str"
+                      length="50"
+                      name="state" />
+                    <externalMetadataColumn
+                      refId="Package\ImportDimDriver\DestinationUserDataDimDriver.Inputs[OLE DB Destination Input].ExternalColumns[driver_license_number]"
+                      codePage="1250"
+                      dataType="str"
+                      length="50"
+                      name="driver_license_number" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\ImportDimDriver\DestinationUserDataDimDriver.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\ImportDimDriver\DestinationUserDataDimDriver.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ImportDimDriver\DestinationUserDataDimDriver.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ImportDimDriver\DestinationUserDataDimDriver.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ImportDimDriver\DestinationUserDataDimDriver.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ImportDimDriver\DestinationUserDataDimDriver.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\ImportDimDriver\SourceCarInsuranceDriver"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="SourceCarInsuranceDriver"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT  p.first_name, p.last_name, p.date_of_birth,
+              p.phone_number, d.driver_license_number,                                    a.postal_number, a.city, a.state
+FROM Driver d, Person p, Address a 
+WHERE d.person_id = p.person_id AND 
+p.address_id = a.address_id;</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\ImportDimDriver\SourceCarInsuranceDriver.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Source]"
+                  connectionManagerRefId="Package.ConnectionManagers[Source]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\ImportDimDriver\SourceCarInsuranceDriver.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ImportDimDriver\SourceCarInsuranceDriver.Outputs[OLE DB Source Output].Columns[first_name]"
+                      codePage="1250"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ImportDimDriver\SourceCarInsuranceDriver.Outputs[OLE DB Source Output].ExternalColumns[first_name]"
+                      length="50"
+                      lineageId="Package\ImportDimDriver\SourceCarInsuranceDriver.Outputs[OLE DB Source Output].Columns[first_name]"
+                      name="first_name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ImportDimDriver\SourceCarInsuranceDriver.Outputs[OLE DB Source Output].Columns[last_name]"
+                      codePage="1250"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ImportDimDriver\SourceCarInsuranceDriver.Outputs[OLE DB Source Output].ExternalColumns[last_name]"
+                      length="50"
+                      lineageId="Package\ImportDimDriver\SourceCarInsuranceDriver.Outputs[OLE DB Source Output].Columns[last_name]"
+                      name="last_name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ImportDimDriver\SourceCarInsuranceDriver.Outputs[OLE DB Source Output].Columns[date_of_birth]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ImportDimDriver\SourceCarInsuranceDriver.Outputs[OLE DB Source Output].ExternalColumns[date_of_birth]"
+                      lineageId="Package\ImportDimDriver\SourceCarInsuranceDriver.Outputs[OLE DB Source Output].Columns[date_of_birth]"
+                      name="date_of_birth"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ImportDimDriver\SourceCarInsuranceDriver.Outputs[OLE DB Source Output].Columns[phone_number]"
+                      codePage="1250"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ImportDimDriver\SourceCarInsuranceDriver.Outputs[OLE DB Source Output].ExternalColumns[phone_number]"
+                      length="50"
+                      lineageId="Package\ImportDimDriver\SourceCarInsuranceDriver.Outputs[OLE DB Source Output].Columns[phone_number]"
+                      name="phone_number"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ImportDimDriver\SourceCarInsuranceDriver.Outputs[OLE DB Source Output].Columns[postal_number]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ImportDimDriver\SourceCarInsuranceDriver.Outputs[OLE DB Source Output].ExternalColumns[postal_number]"
+                      lineageId="Package\ImportDimDriver\SourceCarInsuranceDriver.Outputs[OLE DB Source Output].Columns[postal_number]"
+                      name="postal_number"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ImportDimDriver\SourceCarInsuranceDriver.Outputs[OLE DB Source Output].Columns[city]"
+                      codePage="1250"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ImportDimDriver\SourceCarInsuranceDriver.Outputs[OLE DB Source Output].ExternalColumns[city]"
+                      length="50"
+                      lineageId="Package\ImportDimDriver\SourceCarInsuranceDriver.Outputs[OLE DB Source Output].Columns[city]"
+                      name="city"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ImportDimDriver\SourceCarInsuranceDriver.Outputs[OLE DB Source Output].Columns[state]"
+                      codePage="1250"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ImportDimDriver\SourceCarInsuranceDriver.Outputs[OLE DB Source Output].ExternalColumns[state]"
+                      length="50"
+                      lineageId="Package\ImportDimDriver\SourceCarInsuranceDriver.Outputs[OLE DB Source Output].Columns[state]"
+                      name="state"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ImportDimDriver\SourceCarInsuranceDriver.Outputs[OLE DB Source Output].Columns[driver_license_number]"
+                      codePage="1250"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ImportDimDriver\SourceCarInsuranceDriver.Outputs[OLE DB Source Output].ExternalColumns[driver_license_number]"
+                      length="50"
+                      lineageId="Package\ImportDimDriver\SourceCarInsuranceDriver.Outputs[OLE DB Source Output].Columns[driver_license_number]"
+                      name="driver_license_number"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\ImportDimDriver\SourceCarInsuranceDriver.Outputs[OLE DB Source Output].ExternalColumns[first_name]"
+                      codePage="1250"
+                      dataType="str"
+                      length="50"
+                      name="first_name" />
+                    <externalMetadataColumn
+                      refId="Package\ImportDimDriver\SourceCarInsuranceDriver.Outputs[OLE DB Source Output].ExternalColumns[last_name]"
+                      codePage="1250"
+                      dataType="str"
+                      length="50"
+                      name="last_name" />
+                    <externalMetadataColumn
+                      refId="Package\ImportDimDriver\SourceCarInsuranceDriver.Outputs[OLE DB Source Output].ExternalColumns[date_of_birth]"
+                      dataType="dbDate"
+                      name="date_of_birth" />
+                    <externalMetadataColumn
+                      refId="Package\ImportDimDriver\SourceCarInsuranceDriver.Outputs[OLE DB Source Output].ExternalColumns[phone_number]"
+                      codePage="1250"
+                      dataType="str"
+                      length="50"
+                      name="phone_number" />
+                    <externalMetadataColumn
+                      refId="Package\ImportDimDriver\SourceCarInsuranceDriver.Outputs[OLE DB Source Output].ExternalColumns[postal_number]"
+                      dataType="i4"
+                      name="postal_number" />
+                    <externalMetadataColumn
+                      refId="Package\ImportDimDriver\SourceCarInsuranceDriver.Outputs[OLE DB Source Output].ExternalColumns[city]"
+                      codePage="1250"
+                      dataType="str"
+                      length="50"
+                      name="city" />
+                    <externalMetadataColumn
+                      refId="Package\ImportDimDriver\SourceCarInsuranceDriver.Outputs[OLE DB Source Output].ExternalColumns[state]"
+                      codePage="1250"
+                      dataType="str"
+                      length="50"
+                      name="state" />
+                    <externalMetadataColumn
+                      refId="Package\ImportDimDriver\SourceCarInsuranceDriver.Outputs[OLE DB Source Output].ExternalColumns[driver_license_number]"
+                      codePage="1250"
+                      dataType="str"
+                      length="50"
+                      name="driver_license_number" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\ImportDimDriver\SourceCarInsuranceDriver.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ImportDimDriver\SourceCarInsuranceDriver.Outputs[OLE DB Source Error Output].Columns[first_name]"
+                      codePage="1250"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\ImportDimDriver\SourceCarInsuranceDriver.Outputs[OLE DB Source Error Output].Columns[first_name]"
+                      name="first_name" />
+                    <outputColumn
+                      refId="Package\ImportDimDriver\SourceCarInsuranceDriver.Outputs[OLE DB Source Error Output].Columns[last_name]"
+                      codePage="1250"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\ImportDimDriver\SourceCarInsuranceDriver.Outputs[OLE DB Source Error Output].Columns[last_name]"
+                      name="last_name" />
+                    <outputColumn
+                      refId="Package\ImportDimDriver\SourceCarInsuranceDriver.Outputs[OLE DB Source Error Output].Columns[date_of_birth]"
+                      dataType="dbDate"
+                      lineageId="Package\ImportDimDriver\SourceCarInsuranceDriver.Outputs[OLE DB Source Error Output].Columns[date_of_birth]"
+                      name="date_of_birth" />
+                    <outputColumn
+                      refId="Package\ImportDimDriver\SourceCarInsuranceDriver.Outputs[OLE DB Source Error Output].Columns[phone_number]"
+                      codePage="1250"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\ImportDimDriver\SourceCarInsuranceDriver.Outputs[OLE DB Source Error Output].Columns[phone_number]"
+                      name="phone_number" />
+                    <outputColumn
+                      refId="Package\ImportDimDriver\SourceCarInsuranceDriver.Outputs[OLE DB Source Error Output].Columns[driver_license_number]"
+                      codePage="1250"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\ImportDimDriver\SourceCarInsuranceDriver.Outputs[OLE DB Source Error Output].Columns[driver_license_number]"
+                      name="driver_license_number" />
+                    <outputColumn
+                      refId="Package\ImportDimDriver\SourceCarInsuranceDriver.Outputs[OLE DB Source Error Output].Columns[postal_number]"
+                      dataType="i4"
+                      lineageId="Package\ImportDimDriver\SourceCarInsuranceDriver.Outputs[OLE DB Source Error Output].Columns[postal_number]"
+                      name="postal_number" />
+                    <outputColumn
+                      refId="Package\ImportDimDriver\SourceCarInsuranceDriver.Outputs[OLE DB Source Error Output].Columns[city]"
+                      codePage="1250"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\ImportDimDriver\SourceCarInsuranceDriver.Outputs[OLE DB Source Error Output].Columns[city]"
+                      name="city" />
+                    <outputColumn
+                      refId="Package\ImportDimDriver\SourceCarInsuranceDriver.Outputs[OLE DB Source Error Output].Columns[state]"
+                      codePage="1250"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\ImportDimDriver\SourceCarInsuranceDriver.Outputs[OLE DB Source Error Output].Columns[state]"
+                      name="state" />
+                    <outputColumn
+                      refId="Package\ImportDimDriver\SourceCarInsuranceDriver.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ImportDimDriver\SourceCarInsuranceDriver.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ImportDimDriver\SourceCarInsuranceDriver.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ImportDimDriver\SourceCarInsuranceDriver.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\ImportDimDriver.Paths[OLE DB Source Output]"
+              endId="Package\ImportDimDriver\DestinationUserDataDimDriver.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\ImportDimDriver\SourceCarInsuranceDriver.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\ImportDimInsurance"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{2869a411-55bd-41d4-847c-a2b885038992}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="ImportDimInsurance"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\ImportDimInsurance\DestinationUserDataDimInsurance"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="DestinationUserDataDimInsurance"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[DimInsurance]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\ImportDimInsurance\DestinationUserDataDimInsurance.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Destination]"
+                  connectionManagerRefId="Package.ConnectionManagers[Destination]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\ImportDimInsurance\DestinationUserDataDimInsurance.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\ImportDimInsurance\DestinationUserDataDimInsurance.Inputs[OLE DB Destination Input].Columns[coverage]"
+                      cachedDataType="r8"
+                      cachedName="coverage"
+                      externalMetadataColumnId="Package\ImportDimInsurance\DestinationUserDataDimInsurance.Inputs[OLE DB Destination Input].ExternalColumns[coverage]"
+                      lineageId="Package\ImportDimInsurance\SourceCarInsuranceInsurancePayment.Outputs[OLE DB Source Output].Columns[coverage]" />
+                    <inputColumn
+                      refId="Package\ImportDimInsurance\DestinationUserDataDimInsurance.Inputs[OLE DB Destination Input].Columns[deductible]"
+                      cachedDataType="r8"
+                      cachedName="deductible"
+                      externalMetadataColumnId="Package\ImportDimInsurance\DestinationUserDataDimInsurance.Inputs[OLE DB Destination Input].ExternalColumns[deductible]"
+                      lineageId="Package\ImportDimInsurance\SourceCarInsuranceInsurancePayment.Outputs[OLE DB Source Output].Columns[deductible]" />
+                    <inputColumn
+                      refId="Package\ImportDimInsurance\DestinationUserDataDimInsurance.Inputs[OLE DB Destination Input].Columns[payment_amount]"
+                      cachedDataType="r8"
+                      cachedName="payment_amount"
+                      externalMetadataColumnId="Package\ImportDimInsurance\DestinationUserDataDimInsurance.Inputs[OLE DB Destination Input].ExternalColumns[payment_amount]"
+                      lineageId="Package\ImportDimInsurance\SourceCarInsuranceInsurancePayment.Outputs[OLE DB Source Output].Columns[payment_amount]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\ImportDimInsurance\DestinationUserDataDimInsurance.Inputs[OLE DB Destination Input].ExternalColumns[id]"
+                      dataType="i4"
+                      name="id" />
+                    <externalMetadataColumn
+                      refId="Package\ImportDimInsurance\DestinationUserDataDimInsurance.Inputs[OLE DB Destination Input].ExternalColumns[coverage]"
+                      dataType="r8"
+                      name="coverage" />
+                    <externalMetadataColumn
+                      refId="Package\ImportDimInsurance\DestinationUserDataDimInsurance.Inputs[OLE DB Destination Input].ExternalColumns[deductible]"
+                      dataType="r8"
+                      name="deductible" />
+                    <externalMetadataColumn
+                      refId="Package\ImportDimInsurance\DestinationUserDataDimInsurance.Inputs[OLE DB Destination Input].ExternalColumns[payment_amount]"
+                      dataType="r8"
+                      name="payment_amount" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\ImportDimInsurance\DestinationUserDataDimInsurance.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\ImportDimInsurance\DestinationUserDataDimInsurance.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ImportDimInsurance\DestinationUserDataDimInsurance.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ImportDimInsurance\DestinationUserDataDimInsurance.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ImportDimInsurance\DestinationUserDataDimInsurance.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ImportDimInsurance\DestinationUserDataDimInsurance.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\ImportDimInsurance\SourceCarInsuranceInsurancePayment"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="SourceCarInsuranceInsurancePayment"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT i.coverage, i.deductible, p.payment_amount
+FROM  Insurance i, Payment p
+WHERE p.pay_id = i.pay_id;</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\ImportDimInsurance\SourceCarInsuranceInsurancePayment.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Source]"
+                  connectionManagerRefId="Package.ConnectionManagers[Source]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\ImportDimInsurance\SourceCarInsuranceInsurancePayment.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ImportDimInsurance\SourceCarInsuranceInsurancePayment.Outputs[OLE DB Source Output].Columns[coverage]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ImportDimInsurance\SourceCarInsuranceInsurancePayment.Outputs[OLE DB Source Output].ExternalColumns[coverage]"
+                      lineageId="Package\ImportDimInsurance\SourceCarInsuranceInsurancePayment.Outputs[OLE DB Source Output].Columns[coverage]"
+                      name="coverage"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ImportDimInsurance\SourceCarInsuranceInsurancePayment.Outputs[OLE DB Source Output].Columns[deductible]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ImportDimInsurance\SourceCarInsuranceInsurancePayment.Outputs[OLE DB Source Output].ExternalColumns[deductible]"
+                      lineageId="Package\ImportDimInsurance\SourceCarInsuranceInsurancePayment.Outputs[OLE DB Source Output].Columns[deductible]"
+                      name="deductible"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ImportDimInsurance\SourceCarInsuranceInsurancePayment.Outputs[OLE DB Source Output].Columns[payment_amount]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ImportDimInsurance\SourceCarInsuranceInsurancePayment.Outputs[OLE DB Source Output].ExternalColumns[payment_amount]"
+                      lineageId="Package\ImportDimInsurance\SourceCarInsuranceInsurancePayment.Outputs[OLE DB Source Output].Columns[payment_amount]"
+                      name="payment_amount"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\ImportDimInsurance\SourceCarInsuranceInsurancePayment.Outputs[OLE DB Source Output].ExternalColumns[coverage]"
+                      dataType="r8"
+                      name="coverage" />
+                    <externalMetadataColumn
+                      refId="Package\ImportDimInsurance\SourceCarInsuranceInsurancePayment.Outputs[OLE DB Source Output].ExternalColumns[deductible]"
+                      dataType="r8"
+                      name="deductible" />
+                    <externalMetadataColumn
+                      refId="Package\ImportDimInsurance\SourceCarInsuranceInsurancePayment.Outputs[OLE DB Source Output].ExternalColumns[payment_amount]"
+                      dataType="r8"
+                      name="payment_amount" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\ImportDimInsurance\SourceCarInsuranceInsurancePayment.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ImportDimInsurance\SourceCarInsuranceInsurancePayment.Outputs[OLE DB Source Error Output].Columns[coverage]"
+                      dataType="r8"
+                      lineageId="Package\ImportDimInsurance\SourceCarInsuranceInsurancePayment.Outputs[OLE DB Source Error Output].Columns[coverage]"
+                      name="coverage" />
+                    <outputColumn
+                      refId="Package\ImportDimInsurance\SourceCarInsuranceInsurancePayment.Outputs[OLE DB Source Error Output].Columns[deductible]"
+                      dataType="r8"
+                      lineageId="Package\ImportDimInsurance\SourceCarInsuranceInsurancePayment.Outputs[OLE DB Source Error Output].Columns[deductible]"
+                      name="deductible" />
+                    <outputColumn
+                      refId="Package\ImportDimInsurance\SourceCarInsuranceInsurancePayment.Outputs[OLE DB Source Error Output].Columns[payment_amount]"
+                      dataType="r8"
+                      lineageId="Package\ImportDimInsurance\SourceCarInsuranceInsurancePayment.Outputs[OLE DB Source Error Output].Columns[payment_amount]"
+                      name="payment_amount" />
+                    <outputColumn
+                      refId="Package\ImportDimInsurance\SourceCarInsuranceInsurancePayment.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ImportDimInsurance\SourceCarInsuranceInsurancePayment.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ImportDimInsurance\SourceCarInsuranceInsurancePayment.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ImportDimInsurance\SourceCarInsuranceInsurancePayment.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\ImportDimInsurance.Paths[OLE DB Source Output]"
+              endId="Package\ImportDimInsurance\DestinationUserDataDimInsurance.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\ImportDimInsurance\SourceCarInsuranceInsurancePayment.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\ImportFactAccident"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{3748da94-ffdd-4986-83cf-05f6419dd163}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="ImportFactAccident"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\ImportFactAccident\DestinationUserDataFactAccident"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="DestinationUserDataFactAccident"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[FactAccident]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\ImportFactAccident\DestinationUserDataFactAccident.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Destination]"
+                  connectionManagerRefId="Package.ConnectionManagers[Destination]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\ImportFactAccident\DestinationUserDataFactAccident.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\ImportFactAccident\DestinationUserDataFactAccident.Inputs[OLE DB Destination Input].Columns[insurance_id]"
+                      cachedDataType="i4"
+                      cachedName="insurance_id"
+                      externalMetadataColumnId="Package\ImportFactAccident\DestinationUserDataFactAccident.Inputs[OLE DB Destination Input].ExternalColumns[insurancekey]"
+                      lineageId="Package\ImportFactAccident\SourceCarInsuranceAccident.Outputs[OLE DB Source Output].Columns[insurance_id]" />
+                    <inputColumn
+                      refId="Package\ImportFactAccident\DestinationUserDataFactAccident.Inputs[OLE DB Destination Input].Columns[agent_id]"
+                      cachedDataType="i4"
+                      cachedName="agent_id"
+                      externalMetadataColumnId="Package\ImportFactAccident\DestinationUserDataFactAccident.Inputs[OLE DB Destination Input].ExternalColumns[agentkey]"
+                      lineageId="Package\ImportFactAccident\SourceCarInsuranceAccident.Outputs[OLE DB Source Output].Columns[agent_id]" />
+                    <inputColumn
+                      refId="Package\ImportFactAccident\DestinationUserDataFactAccident.Inputs[OLE DB Destination Input].Columns[driver_id]"
+                      cachedDataType="i4"
+                      cachedName="driver_id"
+                      externalMetadataColumnId="Package\ImportFactAccident\DestinationUserDataFactAccident.Inputs[OLE DB Destination Input].ExternalColumns[driverkey]"
+                      lineageId="Package\ImportFactAccident\SourceCarInsuranceAccident.Outputs[OLE DB Source Output].Columns[driver_id]" />
+                    <inputColumn
+                      refId="Package\ImportFactAccident\DestinationUserDataFactAccident.Inputs[OLE DB Destination Input].Columns[car_id]"
+                      cachedDataType="i4"
+                      cachedName="car_id"
+                      externalMetadataColumnId="Package\ImportFactAccident\DestinationUserDataFactAccident.Inputs[OLE DB Destination Input].ExternalColumns[carkey]"
+                      lineageId="Package\ImportFactAccident\SourceCarInsuranceAccident.Outputs[OLE DB Source Output].Columns[car_id]" />
+                    <inputColumn
+                      refId="Package\ImportFactAccident\DestinationUserDataFactAccident.Inputs[OLE DB Destination Input].Columns[damage_cost]"
+                      cachedDataType="r8"
+                      cachedName="damage_cost"
+                      externalMetadataColumnId="Package\ImportFactAccident\DestinationUserDataFactAccident.Inputs[OLE DB Destination Input].ExternalColumns[damage_cost]"
+                      lineageId="Package\ImportFactAccident\SourceCarInsuranceAccident.Outputs[OLE DB Source Output].Columns[damage_cost]" />
+                    <inputColumn
+                      refId="Package\ImportFactAccident\DestinationUserDataFactAccident.Inputs[OLE DB Destination Input].Columns[is_at_fault]"
+                      cachedDataType="i4"
+                      cachedName="is_at_fault"
+                      externalMetadataColumnId="Package\ImportFactAccident\DestinationUserDataFactAccident.Inputs[OLE DB Destination Input].ExternalColumns[is_at_fault]"
+                      lineageId="Package\ImportFactAccident\SourceCarInsuranceAccident.Outputs[OLE DB Source Output].Columns[is_at_fault]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\ImportFactAccident\DestinationUserDataFactAccident.Inputs[OLE DB Destination Input].ExternalColumns[id]"
+                      dataType="i4"
+                      name="id" />
+                    <externalMetadataColumn
+                      refId="Package\ImportFactAccident\DestinationUserDataFactAccident.Inputs[OLE DB Destination Input].ExternalColumns[agentkey]"
+                      dataType="i4"
+                      name="agentkey" />
+                    <externalMetadataColumn
+                      refId="Package\ImportFactAccident\DestinationUserDataFactAccident.Inputs[OLE DB Destination Input].ExternalColumns[driverkey]"
+                      dataType="i4"
+                      name="driverkey" />
+                    <externalMetadataColumn
+                      refId="Package\ImportFactAccident\DestinationUserDataFactAccident.Inputs[OLE DB Destination Input].ExternalColumns[carkey]"
+                      dataType="i4"
+                      name="carkey" />
+                    <externalMetadataColumn
+                      refId="Package\ImportFactAccident\DestinationUserDataFactAccident.Inputs[OLE DB Destination Input].ExternalColumns[insurancekey]"
+                      dataType="i4"
+                      name="insurancekey" />
+                    <externalMetadataColumn
+                      refId="Package\ImportFactAccident\DestinationUserDataFactAccident.Inputs[OLE DB Destination Input].ExternalColumns[damage_cost]"
+                      dataType="r8"
+                      name="damage_cost" />
+                    <externalMetadataColumn
+                      refId="Package\ImportFactAccident\DestinationUserDataFactAccident.Inputs[OLE DB Destination Input].ExternalColumns[is_at_fault]"
+                      dataType="i4"
+                      name="is_at_fault" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\ImportFactAccident\DestinationUserDataFactAccident.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\ImportFactAccident\DestinationUserDataFactAccident.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ImportFactAccident\DestinationUserDataFactAccident.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ImportFactAccident\DestinationUserDataFactAccident.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ImportFactAccident\DestinationUserDataFactAccident.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ImportFactAccident\DestinationUserDataFactAccident.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\ImportFactAccident\SourceCarInsuranceAccident"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="SourceCarInsuranceAccident"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT a.agent_id, d.driver_id, c.car_id, i.insurance_id,              ac.damage_cost, ac.is_at_fault
+FROM Agent a, Driver d, Car c, Accident ac, Insurance i
+WHERE a.driver_id = d.driver_id AND
+              d.car_id = c.car_id AND
+              c.accident_id = ac.accident_id AND
+              ac.insurance_id = i.insurance_id;</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\ImportFactAccident\SourceCarInsuranceAccident.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Source]"
+                  connectionManagerRefId="Package.ConnectionManagers[Source]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\ImportFactAccident\SourceCarInsuranceAccident.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ImportFactAccident\SourceCarInsuranceAccident.Outputs[OLE DB Source Output].Columns[insurance_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ImportFactAccident\SourceCarInsuranceAccident.Outputs[OLE DB Source Output].ExternalColumns[insurance_id]"
+                      lineageId="Package\ImportFactAccident\SourceCarInsuranceAccident.Outputs[OLE DB Source Output].Columns[insurance_id]"
+                      name="insurance_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ImportFactAccident\SourceCarInsuranceAccident.Outputs[OLE DB Source Output].Columns[agent_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ImportFactAccident\SourceCarInsuranceAccident.Outputs[OLE DB Source Output].ExternalColumns[agent_id]"
+                      lineageId="Package\ImportFactAccident\SourceCarInsuranceAccident.Outputs[OLE DB Source Output].Columns[agent_id]"
+                      name="agent_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ImportFactAccident\SourceCarInsuranceAccident.Outputs[OLE DB Source Output].Columns[driver_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ImportFactAccident\SourceCarInsuranceAccident.Outputs[OLE DB Source Output].ExternalColumns[driver_id]"
+                      lineageId="Package\ImportFactAccident\SourceCarInsuranceAccident.Outputs[OLE DB Source Output].Columns[driver_id]"
+                      name="driver_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ImportFactAccident\SourceCarInsuranceAccident.Outputs[OLE DB Source Output].Columns[car_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ImportFactAccident\SourceCarInsuranceAccident.Outputs[OLE DB Source Output].ExternalColumns[car_id]"
+                      lineageId="Package\ImportFactAccident\SourceCarInsuranceAccident.Outputs[OLE DB Source Output].Columns[car_id]"
+                      name="car_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ImportFactAccident\SourceCarInsuranceAccident.Outputs[OLE DB Source Output].Columns[damage_cost]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ImportFactAccident\SourceCarInsuranceAccident.Outputs[OLE DB Source Output].ExternalColumns[damage_cost]"
+                      lineageId="Package\ImportFactAccident\SourceCarInsuranceAccident.Outputs[OLE DB Source Output].Columns[damage_cost]"
+                      name="damage_cost"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ImportFactAccident\SourceCarInsuranceAccident.Outputs[OLE DB Source Output].Columns[is_at_fault]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ImportFactAccident\SourceCarInsuranceAccident.Outputs[OLE DB Source Output].ExternalColumns[is_at_fault]"
+                      lineageId="Package\ImportFactAccident\SourceCarInsuranceAccident.Outputs[OLE DB Source Output].Columns[is_at_fault]"
+                      name="is_at_fault"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\ImportFactAccident\SourceCarInsuranceAccident.Outputs[OLE DB Source Output].ExternalColumns[insurance_id]"
+                      dataType="i4"
+                      name="insurance_id" />
+                    <externalMetadataColumn
+                      refId="Package\ImportFactAccident\SourceCarInsuranceAccident.Outputs[OLE DB Source Output].ExternalColumns[agent_id]"
+                      dataType="i4"
+                      name="agent_id" />
+                    <externalMetadataColumn
+                      refId="Package\ImportFactAccident\SourceCarInsuranceAccident.Outputs[OLE DB Source Output].ExternalColumns[driver_id]"
+                      dataType="i4"
+                      name="driver_id" />
+                    <externalMetadataColumn
+                      refId="Package\ImportFactAccident\SourceCarInsuranceAccident.Outputs[OLE DB Source Output].ExternalColumns[car_id]"
+                      dataType="i4"
+                      name="car_id" />
+                    <externalMetadataColumn
+                      refId="Package\ImportFactAccident\SourceCarInsuranceAccident.Outputs[OLE DB Source Output].ExternalColumns[damage_cost]"
+                      dataType="r8"
+                      name="damage_cost" />
+                    <externalMetadataColumn
+                      refId="Package\ImportFactAccident\SourceCarInsuranceAccident.Outputs[OLE DB Source Output].ExternalColumns[is_at_fault]"
+                      dataType="i4"
+                      name="is_at_fault" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\ImportFactAccident\SourceCarInsuranceAccident.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ImportFactAccident\SourceCarInsuranceAccident.Outputs[OLE DB Source Error Output].Columns[agent_id]"
+                      dataType="i4"
+                      lineageId="Package\ImportFactAccident\SourceCarInsuranceAccident.Outputs[OLE DB Source Error Output].Columns[agent_id]"
+                      name="agent_id" />
+                    <outputColumn
+                      refId="Package\ImportFactAccident\SourceCarInsuranceAccident.Outputs[OLE DB Source Error Output].Columns[driver_id]"
+                      dataType="i4"
+                      lineageId="Package\ImportFactAccident\SourceCarInsuranceAccident.Outputs[OLE DB Source Error Output].Columns[driver_id]"
+                      name="driver_id" />
+                    <outputColumn
+                      refId="Package\ImportFactAccident\SourceCarInsuranceAccident.Outputs[OLE DB Source Error Output].Columns[car_id]"
+                      dataType="i4"
+                      lineageId="Package\ImportFactAccident\SourceCarInsuranceAccident.Outputs[OLE DB Source Error Output].Columns[car_id]"
+                      name="car_id" />
+                    <outputColumn
+                      refId="Package\ImportFactAccident\SourceCarInsuranceAccident.Outputs[OLE DB Source Error Output].Columns[insurance_id]"
+                      dataType="i4"
+                      lineageId="Package\ImportFactAccident\SourceCarInsuranceAccident.Outputs[OLE DB Source Error Output].Columns[insurance_id]"
+                      name="insurance_id" />
+                    <outputColumn
+                      refId="Package\ImportFactAccident\SourceCarInsuranceAccident.Outputs[OLE DB Source Error Output].Columns[damage_cost]"
+                      dataType="r8"
+                      lineageId="Package\ImportFactAccident\SourceCarInsuranceAccident.Outputs[OLE DB Source Error Output].Columns[damage_cost]"
+                      name="damage_cost" />
+                    <outputColumn
+                      refId="Package\ImportFactAccident\SourceCarInsuranceAccident.Outputs[OLE DB Source Error Output].Columns[is_at_fault]"
+                      dataType="i4"
+                      lineageId="Package\ImportFactAccident\SourceCarInsuranceAccident.Outputs[OLE DB Source Error Output].Columns[is_at_fault]"
+                      name="is_at_fault" />
+                    <outputColumn
+                      refId="Package\ImportFactAccident\SourceCarInsuranceAccident.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ImportFactAccident\SourceCarInsuranceAccident.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ImportFactAccident\SourceCarInsuranceAccident.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ImportFactAccident\SourceCarInsuranceAccident.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\ImportFactAccident.Paths[OLE DB Source Output]"
+              endId="Package\ImportFactAccident\DestinationUserDataFactAccident.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\ImportFactAccident\SourceCarInsuranceAccident.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{343FBF35-E59D-4AEA-B541-B7EA5C5AD3FC}"
+      DTS:From="Package\ImportDimCar"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\ImportDimAgent" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{4B09653F-15FF-4DCF-BF1E-B53C426B9149}"
+      DTS:From="Package\ImportDimAgent"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\ImportDimDriver" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{65C02DBF-BD0B-4A04-A9E2-939D4B7F5B7F}"
+      DTS:From="Package\ImportDimDriver"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\ImportDimInsurance" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{234A20AE-D7CD-4A96-8725-82359354A684}"
+      DTS:From="Package\ImportDimInsurance"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\ImportFactAccident" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="144.8,41.6"
+          Id="Package\ImportDimCar"
+          TopLeft="55.500000851495,24.6176473269413" />
+        <NodeLayout
+          Size="156.8,41.6"
+          Id="Package\ImportDimAgent"
+          TopLeft="52.8571437572947,95.5882366347066" />
+        <NodeLayout
+          Size="157.6,41.6"
+          Id="Package\ImportDimDriver"
+          TopLeft="55.0000009366445,166.6000009116" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="132.52857234697,137.188236634707">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,29.4117642768939"
+              Start="0,0"
+              End="0,21.9117642768939">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.9117642768939" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="176,41.6"
+          Id="Package\ImportDimInsurance"
+          TopLeft="47.8571436721452,250.82353292947" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="134.828572304395,208.2000009116">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,42.6235320178696"
+              Start="0,0"
+              End="0,35.1235320178696">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.1235320178696" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="129.578572304395,66.2176473269413">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,29.3705893077653"
+              Start="0,0"
+              End="0,21.8705893077653">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.8705893077653" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="169.6,41.6"
+          Id="Package\ImportFactAccident"
+          TopLeft="46.4285722192453,331.117651702624" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="133.542857945695,292.42353292947">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,38.6941187731534"
+              Start="0,0"
+              End="0,31.1941187731534">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.1941187731534" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\ImportDimCar">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="188.8,41.6"
+          Id="Package\ImportDimCar\SourceCarInsuranceCar"
+          TopLeft="42.8571435869956,12.2352942892425" />
+        <NodeLayout
+          Size="208.8,41.6"
+          Id="Package\ImportDimCar\DestinationUserDataDimCar"
+          TopLeft="30.5000004257475,98.0294130623959" />
+        <EdgeLayout
+          Id="Package\ImportDimCar.Paths[OLE DB Source Output]"
+          TopLeft="136.078572006372,53.8352942892425">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,44.1941187731535"
+              Start="0,0"
+              End="0,36.6941187731535">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.6941187731535" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\ImportDimCar\SourceCarInsuranceCar">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\ImportDimCar\DestinationUserDataDimCar">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\ImportDimAgent">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="200,41.6"
+          Id="Package\ImportDimAgent\SourceCarInsuranceAgent"
+          TopLeft="42.8571435869956,12.2352942892425" />
+        <NodeLayout
+          Size="220.8,41.6"
+          Id="Package\ImportDimAgent\DestinationUserDataDimAgent"
+          TopLeft="37.7857150398956,94.8725502636744" />
+        <EdgeLayout
+          Id="Package\ImportDimAgent.Paths[OLE DB Source Output]"
+          TopLeft="145.521429313446,53.8352942892425">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,41.0372559744319"
+              Start="0,0"
+              End="0,33.5372559744319">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.5372559744319" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\ImportDimAgent\SourceCarInsuranceAgent">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\ImportDimAgent\DestinationUserDataDimAgent">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\ImportDimDriver">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="200.8,41.6"
+          Id="Package\ImportDimDriver\SourceCarInsuranceDriver"
+          TopLeft="42.8571435869956,12.2352942892425" />
+        <NodeLayout
+          Size="221.6,41.6"
+          Id="Package\ImportDimDriver\DestinationUserDataDimDriver"
+          TopLeft="37.7857150398956,94.8725502636744" />
+        <EdgeLayout
+          Id="Package\ImportDimDriver.Paths[OLE DB Source Output]"
+          TopLeft="145.921429313446,53.8352942892425">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,41.0372559744319"
+              Start="0,0"
+              End="0,33.5372559744319">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.5372559744319" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\ImportDimDriver\SourceCarInsuranceDriver">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\ImportDimDriver\DestinationUserDataDimDriver">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\ImportDimInsurance">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="260,41.6"
+          Id="Package\ImportDimInsurance\SourceCarInsuranceInsurancePayment"
+          TopLeft="42.8571435869956,12.2352942892425" />
+        <NodeLayout
+          Size="240,41.6"
+          Id="Package\ImportDimInsurance\DestinationUserDataDimInsurance"
+          TopLeft="47.0164842706648,96.4110118021359" />
+        <EdgeLayout
+          Id="Package\ImportDimInsurance.Paths[OLE DB Source Output]"
+          TopLeft="169.93681392883,53.8352942892425">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,42.5757175128934"
+              Start="0,0"
+              End="0,35.0757175128934">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.0757175128934" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\ImportDimInsurance\SourceCarInsuranceInsurancePayment">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\ImportDimInsurance\DestinationUserDataDimInsurance">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\ImportFactAccident">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="212.8,41.6"
+          Id="Package\ImportFactAccident\SourceCarInsuranceAccident"
+          TopLeft="42.8571435869956,12.2352942892425" />
+        <NodeLayout
+          Size="233.6,41.6"
+          Id="Package\ImportFactAccident\DestinationUserDataFactAccident"
+          TopLeft="30.5879128420934,99.2681546592788" />
+        <EdgeLayout
+          Id="Package\ImportFactAccident.Paths[OLE DB Source Output]"
+          TopLeft="148.322528214544,53.8352942892425">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,45.4328603700363"
+              Start="0,0"
+              End="0,37.9328603700363">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,37.9328603700363" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\ImportFactAccident\SourceCarInsuranceAccident">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\ImportFactAccident\DestinationUserDataFactAccident">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

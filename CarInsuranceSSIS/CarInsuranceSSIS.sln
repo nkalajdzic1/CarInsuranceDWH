@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30621.155
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "CarInsuranceSSIS", "CarInsuranceSSIS.dtproj", "{D2FDE4CE-D466-4BCD-B456-1799C0745302}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D2FDE4CE-D466-4BCD-B456-1799C0745302}.Development|Default.ActiveCfg = Development
+		{D2FDE4CE-D466-4BCD-B456-1799C0745302}.Development|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F558CCA5-740F-44E3-8B31-6FBEEA2820B1}
+	EndGlobalSection
+EndGlobal

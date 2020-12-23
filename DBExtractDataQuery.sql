@@ -37,8 +37,8 @@ select concat(p.first_name, ' ', p.last_name) as name_of_driver, c.model, c.plat
 from  Person p, Driver d, Car c
 where p.person_id=d.person_id and d.car_id=c.car_id;
 
--- RETURN MAXIMUM PAYMENT FOR ACCIDENT
-select top 1 concat(p.first_name, ' ', p.last_name) as name_of_driver, concat(a.street_address,' ',a.city) as location, d.driver_license_number,
+-- RETURN 20 MAXIMUM PAYMENT FOR ACCIDENT
+select top 20 concat(p.first_name, ' ', p.last_name) as name_of_driver, concat(a.street_address,' ',a.city) as location, d.driver_license_number,
 c.car_id, c.model, c.plate, ac.report_date, i.issued_date, pa.payment_amount
 from Person p, Driver d, Address a, Car c, Accident ac, Insurance i, Payment pa
 where p.person_id=d.person_id 

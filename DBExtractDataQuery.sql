@@ -58,7 +58,7 @@ and a.accident_id=c.accident_id
 and a.is_at_fault=0;
 
 -- RETURN ACCIDENTS MADE IN PAST YEAR
-select concat(p.first_name, ' ', p.last_name) as name_of_driver, d.driver_license_number, c.model, c.plate, a.report_date
+select concat(p.first_name, ' ', p.last_name) as name_of_driver, d.driver_license_number, c.model, c.plate, a.accident_id, a.report_date
 from Person p, Driver d, Car c, Accident a
 where p.person_id=d.person_id
 and d.car_id=c.car_id

@@ -288,7 +288,7 @@ INSERT INTO payment (pay_id,payment_date,payment_amount) VALUES (50,'2020-10-16'
 
 
 
-INSERT INTO insurance (insurance_id,coverage,issued_date,pay_id) VALUES (1,'930.98','2021-10-14',1);
+INSERT INTO insurance (insurance_id,deductible,issued_date,pay_id) VALUES (1,'930.98','2021-10-14',1);
 INSERT INTO insurance (insurance_id,coverage,issued_date,pay_id) VALUES (2,'65.28','2019-09-27',2);
 INSERT INTO insurance (insurance_id,coverage,issued_date,pay_id) VALUES (3,'600.16','2018-01-22',3);
 INSERT INTO insurance (insurance_id,coverage,issued_date,pay_id) VALUES (4,'281.43','2017-10-29',4);
@@ -339,7 +339,7 @@ INSERT INTO insurance (insurance_id,coverage,issued_date,pay_id) VALUES (48,'413
 INSERT INTO insurance (insurance_id,coverage,issued_date,pay_id) VALUES (49,'916.87','2020-01-12',49);
 INSERT INTO insurance (insurance_id,coverage,issued_date,pay_id) VALUES (50,'641.17','2021-06-06',50);
 
-
+UPDATE Insurance SET deductible = coverage/10; -- ovo je naknadno jer nije bio ubacen deductible
 
 
 INSERT INTO accident (accident_id,report_date,damage_cost,is_at_fault,insurance_id) VALUES (1,'2020-03-18','8332.61','1',1);
@@ -392,11 +392,3 @@ INSERT INTO accident (accident_id,report_date,damage_cost,is_at_fault,insurance_
 INSERT INTO accident (accident_id,report_date,damage_cost,is_at_fault,insurance_id) VALUES (48,'2013-10-30','9833.36','1',48);
 INSERT INTO accident (accident_id,report_date,damage_cost,is_at_fault,insurance_id) VALUES (49,'2019-04-30','5447.39','1',49);
 INSERT INTO accident (accident_id,report_date,damage_cost,is_at_fault,insurance_id) VALUES (50,'2018-08-03','3578.22','1',50);
-
-
-
-
-
-
-
-

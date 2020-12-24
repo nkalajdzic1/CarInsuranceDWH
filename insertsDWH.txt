@@ -103,7 +103,6 @@ INSERT INTO DimCar([id],[model],[plate],[color],[serial_number],[manufacturer_ye
 INSERT INTO DimCar([id],[model],[plate],[color],[serial_number],[manufacturer_year]) VALUES(50,'eu,','ridiculus','accumsan','9D369B07-70C9-9E28-4924-BACBCF021D58','2000-01-21');
 
 --DimInsurance
-
 INSERT INTO DimInsurance([id],[coverage],[deductible],[payment_amount]) VALUES(1,'702.76','75.13','627.63');
 INSERT INTO DimInsurance([id],[coverage],[deductible],[payment_amount]) VALUES(2,'429.66','80.07','329.59');
 INSERT INTO DimInsurance([id],[coverage],[deductible],[payment_amount]) VALUES(3,'435.80','00.00','435.80');
@@ -156,7 +155,6 @@ INSERT INTO DimInsurance([id],[coverage],[deductible],[payment_amount]) VALUES(4
 INSERT INTO DimInsurance([id],[coverage],[deductible],[payment_amount]) VALUES(50,'392.50','85.50','312.00');
 
 --DimDriver
-
 INSERT INTO DimDriver([id],[first_name],[last_name],[date_of_birth],[phone_number],[driver_license_number],[postal_number],[city],[state]) VALUES(1,'Leonard','Burns','1965-08-03','(933) 443-9852','8F417E03-6531-3134-C96A-08AA77B22AEF','59796','Wunstorf','Germany');
 INSERT INTO DimDriver([id],[first_name],[last_name],[date_of_birth],[phone_number],[driver_license_number],[postal_number],[city],[state]) VALUES(2,'Wyatt','Rowland','1969-02-25','(896) 324-6848','4E87D618-9386-01E2-EC7C-1E33A5EC9581','43930','Marburg','Germany');
 INSERT INTO DimDriver([id],[first_name],[last_name],[date_of_birth],[phone_number],[driver_license_number],[postal_number],[city],[state]) VALUES(3,'Xena','Spencer','1998-12-20','(287) 563-8847','FC8374A1-ED19-4E0A-81A1-5965DA801F18','70151','Straubing','Germany');
@@ -207,3 +205,17 @@ INSERT INTO DimDriver([id],[first_name],[last_name],[date_of_birth],[phone_numbe
 INSERT INTO DimDriver([id],[first_name],[last_name],[date_of_birth],[phone_number],[driver_license_number],[postal_number],[city],[state]) VALUES(48,'Josephine','Winters','1973-10-09','(119) 220-5151','73ECC70B-72AF-B2C2-6B42-E5FF584EEDA0','22020','Bremen','Germany');
 INSERT INTO DimDriver([id],[first_name],[last_name],[date_of_birth],[phone_number],[driver_license_number],[postal_number],[city],[state]) VALUES(49,'Harlan','Buckner','1999-08-02','(857) 524-3358','9A0598D5-6429-DCEC-0AD4-80F6B9435287','43905','Koblenz','Germany');
 INSERT INTO DimDriver([id],[first_name],[last_name],[date_of_birth],[phone_number],[driver_license_number],[postal_number],[city],[state]) VALUES(50,'Georgia','Reyes','1996-10-15','(339) 201-7846','6B75C7E7-B91B-2629-0DB4-819A13BDD2B2','32776','Hofheim am Taunus','Germany');
+
+--DimAgent
+INSERT INTO DimAgent([id],[username],[first_name],[last_name],[date_of_birth],[phone_number],[postal_number],[city],[state]) VALUES(1,'Agent!-!Isaiah','Isaiah','Berg','1984-03-11','(140) 658-4517','83187','Waren','Germany');
+INSERT INTO DimAgent([id],[username],[first_name],[last_name],[date_of_birth],[phone_number],[postal_number],[city],[state]) VALUES(2,'Agent!-!Dillon','Dillon','Rios','1995-01-16','(649) 215-2062','14837','Ribnitz-Damgarten','Germany');
+INSERT INTO DimAgent([id],[username],[first_name],[last_name],[date_of_birth],[phone_number],[postal_number],[city],[state]) VALUES(3,'Agent!-!Porter','Porter','Camacho','1962-01-19','(801) 611-7433','39824','Leipzig','Germany');
+INSERT INTO DimAgent([id],[username],[first_name],[last_name],[date_of_birth],[phone_number],[postal_number],[city],[state]) VALUES(4,'Agent!-!Baker','Baker','Calderon','1961-11-03','(987) 135-8656','00708','Rastatt','Germany');
+INSERT INTO DimAgent([id],[username],[first_name],[last_name],[date_of_birth],[phone_number],[postal_number],[city],[state]) VALUES(5,'Agent!-!Dominic','Dominic','Hunt','1977-10-23','(578) 560-0522','08469','Rodgau','Germany');
+INSERT INTO DimAgent([id],[username],[first_name],[last_name],[date_of_birth],[phone_number],[postal_number],[city],[state]) VALUES(6,'Agent!-!Maya','Maya','Moses','1969-09-20','(909) 124-0462','45941','Schifferstadt','Germany');
+INSERT INTO DimAgent([id],[username],[first_name],[last_name],[date_of_birth],[phone_number],[postal_number],[city],[state]) VALUES(7,'Agent!-!Heidi','Heidi','Osborn','1992-07-10','(972) 773-7583','80497','Bremen','Germany');
+INSERT INTO DimAgent([id],[username],[first_name],[last_name],[date_of_birth],[phone_number],[postal_number],[city],[state]) VALUES(8,'Agent!-!Keith','Keith','Thompson','1975-12-27','(393) 799-0750','10720','Weißenfels','Germany');
+INSERT INTO DimAgent([id],[username],[first_name],[last_name],[date_of_birth],[phone_number],[postal_number],[city],[state]) VALUES(9,'Agent!-!Alfreda','Alfreda','Small','1970-06-10','(871) 770-1864','56164','Würzburg','Germany');
+INSERT INTO DimAgent([id],[username],[first_name],[last_name],[date_of_birth],[phone_number],[postal_number],[city],[state]) VALUES(10,'Agent!-!Ella','Ella','Mcneil','1967-04-15','(605) 818-8685','68447','Schwedt','Germany');
+INSERT INTO DimAgent([id],[username],[first_name],[last_name],[date_of_birth],[phone_number],[postal_number],[city],[state]) VALUES(11,'Agent!-!Melodie','Melodie','Strickland','1966-06-21','(551) 176-9008','45987','Waren','Germany');
+INSERT INTO DimAgent([id],[username],[first_name],[last_name],[date_of_birth],[phone_number],[postal_number],[city],[state]) VALUES(12,'Agent!-!Robert','Robert','Moreno','1988-03-19','(226) 242-1253','30896','Freising','Germany');
